@@ -6,6 +6,7 @@ const Home = () => {
     <div className="main">
       <img src={wall01} alt="" className="background" />
       <h2>Playlist maker</h2>
+      <button id="login">Login in Spotify</button>
     </div>
   )
 }
