@@ -98,7 +98,7 @@ header .logo {
   font-size: 2rem;
 }
 
-.links i {
+.links .ico {
   font-size: 2rem;
   padding: 3px;
   border-radius: 5px;
@@ -119,3 +119,16 @@ header .logo {
   margin-left: 7px;
 }
 
+@media (max-width: 700px) {
+  header {
+    padding: 6px 18px;
+  }
+
+  .navigation li a {
+    font-size: 2.35em;
+  }
+
+  .links .ico {
+    font-size: 3rem;
+  }
+}

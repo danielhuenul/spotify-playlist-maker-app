@@ -15,10 +15,6 @@ const Navbar = () => {
       <header>
         <a href="#" className="logo">LOGO</a>
         <div ref={righSide} className="righSide">
-          <div className="btns dayNight">
-            <i className="fa-solid fa-sun"></i>
-            <i className="fa-solid fa-moon"></i>
-          </div>
           <div onClick={onToggleMenu} className="btns menuToggle">
             <i className="fa-solid fa-bars"></i>
             <i className="fa-solid fa-xmark"></i>
@@ -31,8 +27,12 @@ const Navbar = () => {
         <li><a href="#">Maker</a></li>
         <li><a href="#">About</a></li>
         <li className="links">
-          <i className="fa-brands fa-github"></i>
-          <i className="fa-brands fa-linkedin"></i>
+          <a href="https://github.com/danielhuenul" target="_blank">
+            <i className="fa-brands fa-github ico"></i>
+          </a>
+          <a href="https://linkedin.com/in/daniel-hc" target="_blank">
+            <i className="fa-brands fa-linkedin ico"></i>
+          </a>
         </li>
       </ul>
     </React.Fragment>
