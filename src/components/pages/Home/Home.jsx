@@ -1,11 +1,13 @@
 import "./home.css"
 import wall01 from '../../../assets/wall01.jpg'
-import clientAdapter from "../../../service/client.adapter"
+import clientAdapter from "../../../service/adapters/client.adapter"
 
 const Home = () => {
 
   const handleLogin = async () => {
-    const response = await clientAdapter.get("/login");
+    const response = await clientAdapter.get("/login")
+    console.log("🚀 ~ response.data", response.data)
+    localStorage.setItem("simpleToken", response.data.simpleToken)
     window.location.href = response.data.url
   }
 
