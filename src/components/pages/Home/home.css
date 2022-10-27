@@ -41,6 +41,11 @@
 
 @media (max-width: 700px) {
   .main h2 {
-    font-size: 3rem;
+    font-size: 2rem;
+  }
+
+  .main #login {
+    width: 210px;
+    font-size: 0.9rem;
   }
 }

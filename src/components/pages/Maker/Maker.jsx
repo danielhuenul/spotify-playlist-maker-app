@@ -5,9 +5,9 @@ import './maker.css'
 
 const Maker = () => {
   const [ params ] = useSearchParams();
-  const { bearerToken, expiresIn } = useLogin({
+  useLogin({
     code: params.get("code"),
-    redirect_uri: window.location.pathname.split("?")[0]
+    redirect_uri: window.location.href.split("?")[0]
   });
 
   return (

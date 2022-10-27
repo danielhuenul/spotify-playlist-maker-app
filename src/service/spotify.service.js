@@ -1,5 +1,8 @@
 import QueryString from "qs";
-import spotifyClient from "./adapters/spotifyClient.adapter";
+import {
+  accountSpotifyClient,
+  apiSpotifyClient
+} from "./adapters/spotifyClient.adapter";
 
 export const generaToken = async ({ code, redirect_uri, grant_type = "authorization_code" }) => {
   try {
@@ -12,11 +15,20 @@ export const generaToken = async ({ code, redirect_uri, grant_type = "authorizat
     const config = {
       headers: {
         'Authorization': `Basic ${localStorage.getItem("simpleToken")}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
       },
     }
 
-    const response = await spotifyClient.post("/token", data, config)
+    const response = await accountSpotifyClient.post("/token", data, config)
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return {}
+  }
+}
+
+export const getMe = async () => {
+  try {
+    const response = await apiSpotifyClient.get("/me")
     return response.data
   } catch (error) {
     console.error(error)

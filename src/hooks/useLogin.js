@@ -1,29 +1,27 @@
+import { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
-import { generaToken } from '../service/spotify.service';
+import { Context } from "../Context";
+import { generaToken, getMe } from '../service/spotify.service';
 
 export const useLogin = ({ code, redirect_uri }) => {
-  const bearerToken = sessionStorage.getItem("bearerToken");
-  const expiresIn = sessionStorage.getItem("expiresIn");
+  const [ context, setContext ] = useContext(Context);
 
-  if (bearerToken && expiresIn) {
-    return {
-      bearerToken,
-      expiresIn
+  const { data: token } = useQuery('generaToken', () =>
+    generaToken({ code, redirect_uri }), {
+      enabled: !context?.user?.id
     }
-  };
-
-  const { isLoading, data } = useQuery('generaToken', () =>
-    generaToken({ code, redirect_uri })
   )
 
-  if (!isLoading) {
-    sessionStorage.setItem("bearerToken", data.access_token);
-    sessionStorage.setItem("expiresIn", data.expires_in);
-
-    return {
-      bearerToken: data.access_token,
-      expiresIn: data.expires_in
+  sessionStorage.setItem("access_token", token?.access_token)
+  const { isLoading, data: user } = useQuery('me', getMe, {
+      enabled: !!token?.access_token || !context?.user?.id
     }
-  }
+  )
 
+  useEffect(() => {
+    setContext(prev => ({ ...prev, user }))
+  }, [isLoading])
+
+
+  return {}
 }

@@ -1,7 +1,16 @@
 import axios from 'axios'
 
-const spotifyClientAdapter = axios.create({
-  baseURL: "https://accounts.spotify.com/api"
+export const accountSpotifyClient = axios.create({
+  baseURL: "https://accounts.spotify.com/api",
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  }
 })
 
-export default spotifyClientAdapter
+export const apiSpotifyClient = axios.create({
+  baseURL: "https://api.spotify.com/v1",
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  }
+})
