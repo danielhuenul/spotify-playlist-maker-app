@@ -14,12 +14,14 @@ export const useLogin = ({ code, redirect_uri }) => {
 
   sessionStorage.setItem("access_token", token?.access_token)
   const { isLoading, data: user } = useQuery('me', getMe, {
-      enabled: !!token?.access_token || !context?.user?.id
+      enabled: !!token?.access_token && !context?.user?.id
     }
   )
 
   useEffect(() => {
-    setContext(prev => ({ ...prev, user }))
+    if (!isLoading) {
+      setContext(prev => ({ ...prev, user }))
+    }
   }, [isLoading])
 
 
