@@ -1,26 +1,24 @@
-import React from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { useLogin } from '../../../hooks/useLogin'
+import React, { useContext } from 'react'
+import { Context } from '../../../Context';
 import './maker.css'
 
 const Maker = () => {
-  const [ params ] = useSearchParams();
-  useLogin({
-    code: params.get("code"),
-    redirect_uri: window.location.href.split("?")[0]
-  });
+  const [ context ] = useContext(Context);
 
   return (
     <div className='main gradient'>
-      <h2>¡Comienza a crear!</h2>
+      <h2>¡Hola {context.user.display_name}. Comienza a crear!</h2>
       <div className="container">
-        <form>
-          <div className="firts">
+        <form className='formPlaylist'>
+          <div className="c1">
             <input type="text" name='name' placeholder='Nombre de lista de reproduccion' />
             <label htmlFor="public">publica</label>
             <input type="checkbox" name='public' />
+            <input type="text" name='description' />
           </div>
-          <textarea name='description' cols="30" rows="10"></textarea>
+          <div className="c2">
+            <textarea name="filters" cols="30" rows="15"></textarea>
+          </div>
         </form>
       </div>
     </div>

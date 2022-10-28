@@ -8,6 +8,7 @@ import "./interceptor"
 import Home from "./components/pages/Home/Home";
 import Maker from "./components/pages/Maker/Maker";
 import About from "./components/pages/About/About";
+import Loading from "./components/pages/Loading/Loading";
 import Navbar from "./components/ui/NavBar/Navbar";
 
 const defaultData = {
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="/maker" element={<Maker />} />
           <Route path="/about" element={<About />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/loading" element={<Loading />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </React.Fragment>

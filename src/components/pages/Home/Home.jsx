@@ -6,7 +6,6 @@ const Home = () => {
 
   const handleLogin = async () => {
     const response = await clientAdapter.get("/login")
-    console.log("🚀 ~ response.data", response.data)
     localStorage.setItem("simpleToken", response.data.simpleToken)
     window.location.href = response.data.url
   }
