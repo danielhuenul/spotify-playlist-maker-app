@@ -15,17 +15,17 @@ export const useLogin = ({ code, redirect_uri }) => {
   )
 
   sessionStorage.setItem("access_token", token?.access_token)
-  const { isLoading, data: user } = useQuery('me', getMe, {
+  const { data: user } = useQuery('me', getMe, {
       enabled: !!token?.access_token && !context?.user?.id
     }
   )
 
   useEffect(() => {
-    if (!isLoading) {
+    if (user?.id && token?.access_token) {
       setContext(prev => ({ ...prev, user }))
       navigate("/maker");
     }
-  }, [isLoading])
+  }, [user?.id, token?.access_token])
 
 
   return {}
