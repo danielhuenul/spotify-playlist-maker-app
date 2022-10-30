@@ -12,28 +12,25 @@ import Loading from "./components/pages/Loading/Loading";
 import Navbar from "./components/ui/NavBar/Navbar";
 
 const defaultData = {
-  token: {
+  clientToken: {
     access_token: "",
-    expires_in: 0,
-    refresh_token: "",
-    scope: "",
-    token_type: ""
+    token_type: "",
+    expires_in: null
   },
-  user: {
+  authorizationToken: {
+    access_token: "",
+    token_type: "",
+    expires_in: null,
+    refresh_token: "",
+    scope: ""
+  },
+  auth: {
     country: "",
     display_name: "",
     email: "",
-    explicit_content: {
-      filter_enabled: null,
-      filter_locked: null
-    },
-    external_urls: {
-      spotify: ""
-    },
-    followers: {
-      href: null,
-      total: 0
-    },
+    explicit_content: {},
+    external_urls: {},
+    followers: {},
     href: "",
     id: "",
     images: [],

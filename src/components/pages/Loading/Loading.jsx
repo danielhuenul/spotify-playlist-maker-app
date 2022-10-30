@@ -5,9 +5,7 @@ import "./loading.css"
 
 const Loading = () => {
   const [ params ] = useSearchParams();
-  const code = params.get("code") || "";
-  const redirect_uri = window.location.href.split("?")[0];
-  useLogin({ code, redirect_uri });
+  useLogin({ code: params.get("code") });
 
   return (
     <div className='main'>

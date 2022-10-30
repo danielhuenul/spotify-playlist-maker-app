@@ -1,24 +1,9 @@
-import QueryString from "qs";
-import {
-  accountSpotifyClient,
-  apiSpotifyClient
-} from "./adapters/spotifyClient.adapter";
+import clientAdapter from "./adapters/client.adapter";
+import { apiSpotifyClient } from "./adapters/spotifyClient.adapter";
 
-export const generaToken = async ({ code, redirect_uri, grant_type = "authorization_code" }) => {
+export const generaToken = async (code) => {
   try {
-    const data = QueryString.stringify({
-      code,
-      redirect_uri,
-      grant_type
-    })
-
-    const config = {
-      headers: {
-        'Authorization': `Basic ${localStorage.getItem("simpleToken")}`,
-      },
-    }
-
-    const response = await accountSpotifyClient.post("/token", data, config)
+    const response = await clientAdapter.post("/token", { code })
     return response.data
   } catch (error) {
     console.error(error)
@@ -29,6 +14,16 @@ export const generaToken = async ({ code, redirect_uri, grant_type = "authorizat
 export const getMe = async () => {
   try {
     const response = await apiSpotifyClient.get("/me")
+    return response.data
+  } catch (error) {
+    console.error(error)
+    return {}
+  }
+}
+
+export const createPlaylist = async (body) => {
+  try {
+    const response = await clientAdapter.post("/create-playlist", body)
     return response.data
   } catch (error) {
     console.error(error)

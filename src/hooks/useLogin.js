@@ -2,31 +2,26 @@ import { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../Context";
-import { generaToken, getMe } from '../service/spotify.service';
+import { generaToken } from '../service/spotify.service';
 
-export const useLogin = ({ code, redirect_uri }) => {
-  const [ context, setContext ] = useContext(Context);
+export const useLogin = ({ code }) => {
   const navigate = useNavigate();
+  const [ context, setContext ] = useContext(Context);
 
-  const { data: token } = useQuery('generaToken', () =>
-    generaToken({ code, redirect_uri }), {
-      enabled: !context?.user?.id
-    }
-  )
+  const { data } = useQuery(
+    'generaToken',
+    () => generaToken(code),
+    { enabled: !context.auth.id }
+  );
 
-  sessionStorage.setItem("access_token", token?.access_token)
-  const { data: user } = useQuery('me', getMe, {
-      enabled: !!token?.access_token && !context?.user?.id
-    }
-  )
-
-  useEffect(() => {
-    if (user?.id && token?.access_token) {
-      setContext(prev => ({ ...prev, user }))
+    useEffect(() => {
+      if(data?.auth?.id) {
+      console.log("🚀 ~ data", data)
+      sessionStorage.setItem("access_token", data.authorizationToken.access_token);
+      setContext(data);
       navigate("/maker");
     }
-  }, [user?.id, token?.access_token])
-
+  }, [ data?.auth?.id, data?.authorizationToken?.access_token ])
 
   return {}
 }
