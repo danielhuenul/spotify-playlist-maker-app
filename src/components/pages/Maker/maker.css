@@ -70,7 +70,24 @@ button {
 
 @media (max-width: 700px) {
   .container {
-    width: 290px;
+    width: 90%;
+  }
+
+  .main h2 {
+    margin-top: 15%;
+    font-size: 1.5rem;
+  }
+
+  .c1 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .formPlaylist input {
+    width: 100%;
+    border-right: none;
   }
 
   h2 {
@@ -78,5 +95,4 @@ button {
     font-size: 1.7rem;
     margin-top: 2rem;
   }
-
 }
