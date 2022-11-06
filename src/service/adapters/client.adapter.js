@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-const clientAdapter = axios.create({
-  baseURL: "http://localhost:3200"
+export default axios.create({
+  baseURL: "http://34.170.164.245"
 })
-
-export default clientAdapter
