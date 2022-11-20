@@ -14,9 +14,8 @@ export const useLogin = ({ code }) => {
     { enabled: !context.auth.id }
   );
 
-    useEffect(() => {
-      if(data?.auth?.id) {
-      console.log("🚀 ~ data", data)
+  useEffect(() => {
+    if(data?.auth?.id) {
       sessionStorage.setItem("access_token", data.authorizationToken.access_token);
       setContext(data);
       navigate("/maker");
